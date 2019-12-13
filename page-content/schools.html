@@ -9,13 +9,27 @@
   <i class="material-icons mdc-button__icon" aria-hidden="true">search</i>
   <span class="mdc-button__label">Search</span>
 </button>
-<button id="filterSchools" class="mdc-button mdc-button--raised">
-  <div class="mdc-menu mdc-menu-surface">
-    <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
-
+<div class="mdc-select mdc-select--outlined demo-enhanced-select mdc-select--focused mdc-select--activated" data-mdc-auto-init="MDCSelect">
+  <div class="mdc-select__anchor custom-enhanced-select-width">
+    <i class="mdc-select__dropdown-icon"></i>
+    <div id="demo-selected-text" class="mdc-select__selected-text" tabindex="0" aria-disabled="false" aria-expanded="true"></div>
+    <div class="mdc-notched-outline mdc-notched-outline--upgraded mdc-notched-outline--notched">
+      <div class="mdc-notched-outline__leading"></div>
+      <div class="mdc-notched-outline__notch" style="width: 32px;">
+        <label id="outlined-label" class="mdc-floating-label mdc-floating-label--float-above" style="">Fruit</label>
+      </div>
+      <div class="mdc-notched-outline__trailing"></div>
+    </div>
+  </div>
+  <div class="mdc-select__menu mdc-menu mdc-menu-surface demo-enhanced-select custom-enhanced-select-width mdc-menu-surface--open" style="transform-origin: center top; left: 0px; top: 56px; max-height: 195.219px;">
+    <ul class="mdc-list">
+      <li data-value="" disabled="" aria-selected="false" role="option" class="mdc-list-item" tabindex="0">
+      </li><li data-value="apple" aria-selected="false" role="option" class="mdc-list-item" tabindex="-1">Apple</li>
+      <li data-value="orange" aria-selected="false" role="option" class="mdc-list-item" tabindex="-1">Orange</li>
+      <li data-value="banana" aria-selected="false" role="option" class="mdc-list-item" tabindex="-1">Banana</li>
     </ul>
   </div>
-</button>
+</div>
 
 
 <div id="resultCount" class="mdc-typography--body1">
