@@ -15,11 +15,12 @@
       body {margin: 0;}
       :root {
         --mdc-theme-primary: #001E62;
+        --mdc-top-app-bar: #000;
       }
       .template {display:none;}
       .mdc-dialog__container {margin:5px;}
       .mdc-typography--headline5  {text-align:center;}
-        
+
     </style>
 
 
@@ -36,31 +37,30 @@
 <!--           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i> -->
           <span class="mdc-list-item__text">APOD</span>
         </a>
-          
+
         <a class="mdc-list-item" href="#settings">
 <!--           <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i> -->
           <span class="mdc-list-item__text">Settings</span>
-        </a>          
+        </a>
 
       </nav>
     </div>
   </aside>
 
   <div class="mdc-drawer-scrim"></div>
-
     <header class="mdc-top-app-bar">
-  <div class="mdc-top-app-bar__row">
-    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-      <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
-      <span class="mdc-top-app-bar__title">Your UIN Here </span>
-    </section>
-    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-    </section>
-  </div>
-</header>
+      <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+          <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
+          <span class="mdc-top-app-bar__title">654621051</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+        </section>
+      </div>
+    </header>
 
 <div class="mdc-drawer-app-content mdc-top-app-bar--fixed-adjust" id="content">
-       
+
 <div id="map"></div>
 
 
@@ -88,7 +88,7 @@
                 <div class="mdc-radio__ripple"></div>
               </div>
               <label for="buy">Buy</label>
-            </div> 
+            </div>
             <div class="mdc-form-field">
               <div class="mdc-radio">
                 <input class="mdc-radio__native-control" type="radio" value="sell" id="sell" name="transactionType" checked>
@@ -99,29 +99,21 @@
                 <div class="mdc-radio__ripple"></div>
               </div>
               <label for="sell">Sell</label>
-            </div> 
-        
-        
-        
+            </div>
+
+
+
           <div class="mdc-text-field mdc-text-field--no-label">
           <input id="symbol" type="text" class="mdc-text-field__input" placeholder="Enter symbol" aria-label="Label">
           <div class="mdc-line-ripple"></div>
-        </div>        
+        </div>
       <div class="mdc-dialog__content" id="my-dialog-content">
         <div class="mdc-text-field mdc-text-field--no-label">
           <input id="shares" type="text" class="mdc-text-field__input" placeholder="Enter number of shares" aria-label="Label">
           <div class="mdc-line-ripple"></div>
-        </div>      
-          
-          
-          
-          
-          
+        </div>
 
-          
-          
-          
-          
+
       </div>
       <footer class="mdc-dialog__actions">
         <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="no">
@@ -134,70 +126,70 @@
     </div>
   </div>
   <div class="mdc-dialog__scrim"></div>
-</div>      
-      
-      
-      
-      
+</div>
+
+
+
+
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <script>
       var db = new Dexie("finapp");
       db.version(1).stores({
           settings: 'name'
       });
-        
-        
-      let apiEndpoint = "";  
+
+
+      let apiEndpoint = "";
       let targetCustomerId = 0, targetAccountId, targetEmployeeId = 0, targetTransactionId;
-        
+
       db.settings.get("apiDomain").then(function(setting) {
         if (setting) {
             apiEndpoint = setting.value;
         } else {
             db.settings.put({"name":"apiDomain", "value":"none"})
         }
-          
+
       });
-      
-        
+
+
 
     </script>
 
 
     <script src="script.js"></script>
     <script>
-        
+
       window.mdc.autoInit();
-      // mdc.drawer.MDCDrawer.attachTo(document.querySelector('.mdc-drawer')); 
+      // mdc.drawer.MDCDrawer.attachTo(document.querySelector('.mdc-drawer'));
       const drawer = document.querySelector('.mdc-drawer').MDCDrawer;
       // console.log(drawer);
       const modalTransaction = document.querySelector('#modalTransaction').MDCDialog;
-    
+
       // open drawer on nav icon
       document.getElementsByClassName("mdc-top-app-bar__navigation-icon")[0].addEventListener("click", function(){
         drawer.open = true;
       });
-    
-      
+
+
       // close drawer on selection
 //       let navs = document.getElementsByClassName("mdc-list-item");
-      
+
 //       for (let i = 0; i < navs.length; i++) {
 //         navs[i].addEventListener("click", function() {
 //           drawer.open = false;
 //         })
 //       };
-        
+
         $("nav.mdc-list a.mdc-list-item").on("click", function(e) {
            console.log($(this))
            let file = "page-content/" + $(this).attr("href").replace("#","") + ".html";
            $("#content").load(file);
            drawer.open = false;
-            
-            
-            
+
+
+
         });
-        
+
         $('[data-mdc-dialog-action="yes"]').on("click", function(e) {
             let url = apiEndpoint + "transactions";
             let requestBody = {
@@ -212,15 +204,15 @@
                     url: url,
                     data: JSON.stringify(requestBody)
                   })
-                    .done(function(response) { 
+                    .done(function(response) {
                         console.log(response);
-                    });         
-            
-            
+                    });
+
+
         })
 
-        
-        
+
+
 
     </script>
 
@@ -243,7 +235,7 @@
               //   navigator.serviceWorker
               //            .register('./sw.js');
               // }
-      
+
       </script>
 
   </body>
