@@ -1,0 +1,14 @@
+{
+  "name": "SchoolLocator",
+  "short_name": "Locator",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "navy",
+  "description": "Get locaiton of all the schools in Chicago",
+  "icons": [{
+    "src": "./icon.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }],
+  "related_applications": []
+}
